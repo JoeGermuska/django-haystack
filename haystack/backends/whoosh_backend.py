@@ -295,9 +295,9 @@ class SearchBackend(BaseSearchBackend):
         Code courtesy of pysolr.
         """
         if isinstance(value, datetime.datetime):
-            value = force_unicode(value.strftime('\"%Y-%m-%dT%H:%M:%S.000Z\"'))
+            value = force_unicode('\"%s\"' % value.isoformat())
         elif isinstance(value, datetime.date):
-            value = force_unicode(value.strftime('\"%Y-%m-%dT00:00:00.000Z\"'))
+            value = force_unicode('\"%sT00:00:00.000Z\"' % value.isoformat())
         elif isinstance(value, bool):
             if value:
                 value = u'true'
